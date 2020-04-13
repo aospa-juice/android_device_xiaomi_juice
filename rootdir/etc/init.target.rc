@@ -197,6 +197,7 @@ on charger
     setprop sys.usb.configfs 1
 #jiangxueqin start mi_thermald
     start mi_thermald
+    start vendor.hvdcp_opti
     service mi_thermald /system/vendor/bin/mi_thermald
     class main
     user root
@@ -208,6 +209,12 @@ service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
     group system
+    writepid /dev/cpuset/system-background/tasks
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
 #Peripheral manager
