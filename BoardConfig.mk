@@ -146,6 +146,9 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
+# Power
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
+
 # QC tree common
 TARGET_SEPOLICY_DIR := bengal
 
