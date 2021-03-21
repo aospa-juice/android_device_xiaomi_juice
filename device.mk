@@ -323,10 +323,10 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
+    FrameworksResTarget \
     JuiceFrameworksOverlay \
     JuiceSystemUIOverlay \
-    JuiceTelephonyOverlay \
-    JuiceWifiOverlay
+    WifiResTarget
 
 # Public libraries
 PRODUCT_COPY_FILES += \
