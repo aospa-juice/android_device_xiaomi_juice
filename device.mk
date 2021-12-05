@@ -188,6 +188,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
    ro.crypto.volume.metadata.method=dm-default-key \
    ro.crypto.volume.options=::v2
 
+# Capabilityconfigstore
+PRODUCT_PACKAGES += vendor.qti.hardware.capabilityconfigstore@1.0.vendor
+
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
