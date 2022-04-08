@@ -133,6 +133,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1
 
+# Configs File System
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # Consumer IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
