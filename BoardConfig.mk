@@ -147,6 +147,12 @@ TARGET_COPY_OUT_PRODUCT := product
 BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := bengal
 
+# Properties
+TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
+
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
