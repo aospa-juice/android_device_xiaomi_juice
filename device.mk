@@ -316,7 +316,6 @@ PRODUCT_PACKAGES += \
     android.hardware.media.omx@1.0-service
 
 PRODUCT_PACKAGES += \
-    libavservices_minijail \
     libavservices_minijail.vendor \
     libavservices_minijail_vendor
 
@@ -404,6 +403,7 @@ TARGET_BOARD_PLATFORM := $(BENGAL)
 DEVICE := juice
 
 TARGET_COMMON_QTI_COMPONENTS := \
+    av \
     vibrator
 
 # QMI
