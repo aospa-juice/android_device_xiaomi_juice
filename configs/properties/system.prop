@@ -44,8 +44,3 @@ persist.vendor.ssr.enable_ramdumps=1
 
 # Time-services
 persist.timed.enable=true
-
-# WFD settings
-debug.sf.enable_hwc_vds=1
-debug.sf.latch_unsignaled=1
-media.wfd.max_resolution=8

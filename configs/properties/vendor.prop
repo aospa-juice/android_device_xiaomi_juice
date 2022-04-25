@@ -223,10 +223,6 @@ sys.vendor.shutdown.waittime=500
 # Time-services
 persist.timed.enable=true
 
-# WFD settings
-persist.debug.wfd.enable=1
-persist.sys.wfd.virtual=0
-
 # WLAN
 persist.vendor.data.iwlan.enable=true
 ro.hardware.wlan.dbs=2

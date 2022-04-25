@@ -351,7 +351,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
     perf \
     telephony \
     usb \
-    vibrator
+    vibrator \
+    wfd
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -486,11 +487,10 @@ PRODUCT_COPY_FILES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    libnl \
+    libdisplayconfig.system.qti \
+    libqdMetaData.system \
+    libdisplayconfig.vendor \
     libwfdaac_vendor
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/juice/juice-vendor.mk)
