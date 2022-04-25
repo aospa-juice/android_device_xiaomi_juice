@@ -5,6 +5,7 @@
 #
 
 DEVICE_PATH := device/xiaomi/juice
+COMMON_PATH := device/qcom/common
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -62,9 +63,6 @@ BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
-# Configs File System
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
-
 # Display
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
@@ -83,7 +81,7 @@ TARGET_OTA_ASSERT_DEVICE := lime,citrus,lemon,pomelo,juice
 
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
+DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_juice
@@ -150,7 +148,6 @@ TARGET_COPY_OUT_PRODUCT := product
 
 # Platform
 BOARD_VENDOR := xiaomi
-TARGET_BOARD_PLATFORM := bengal
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
@@ -158,8 +155,10 @@ TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 
-# QCOM
-BOARD_USES_QCOM_HARDWARE := true
+# QC tree common
+include $(COMMON_PATH)/BoardConfigQcom.mk
+OVERRIDE_QCOM_HARDWARE_VARIANT := sm8250-common
+TARGET_SEPOLICY_DIR := bengal
 
 # Screen density
 TARGET_SCREEN_DENSITY := 440
@@ -180,12 +179,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 USE_SENSOR_MULTI_HAL := true
 
 # Sepolicy
-include device/qcom/sepolicy_vndr/SEPolicy.mk
-
 #BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 #BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 #BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 SELINUX_IGNORE_NEVERALLOWS := true
 
