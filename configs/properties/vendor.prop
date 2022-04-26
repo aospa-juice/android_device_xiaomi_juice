@@ -182,9 +182,6 @@ ro.camera.notify_nfc=1
 # OTG
 persist.sys.oem.otg_support=true
 
-# Perf
-ro.vendor.extension_library=libqti-perfd-client.so
-
 # Qualcomm System Daemon
 persist.vendor.qcomsysd.enabled=1
 

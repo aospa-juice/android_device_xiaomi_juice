@@ -298,10 +298,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.kill_timeout_ms=50 \
     ro.lmk.stall_limit_critical=40
 
-# Media
-PRODUCT_PACKAGES += \
-    libavservices_minijail_vendor
-
 # Manufacturer
 PRODUCT_PROPERTY_OVERRIDES += \
    ro.soc.manufacturer=QTI \
@@ -336,17 +332,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
-# Perf
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.perf@2.2.vendor
-
-# Power
-PRODUCT_PACKAGES += \
-    android.hardware.power@1.2 \
-    android.hardware.power@1.2.vendor \
-    android.hardware.power-service-qti \
-    android.hardware.power.stats@1.0-service.mock
-
 # Public libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
@@ -363,6 +348,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
     init \
     media-legacy \
     overlay \
+    perf \
     telephony \
     usb \
     vibrator
