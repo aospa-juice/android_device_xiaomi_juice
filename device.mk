@@ -408,6 +408,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
     bt \
     gps \
     init \
+    overlay \
     usb \
     vibrator
 
@@ -525,7 +526,7 @@ PRODUCT_PACKAGES += \
     hostapd \
     libwpa_client \
     libwifi-hal-ctrl \
-    WifiResCommon \
+    JuiceWifiOverlay \
     libwifi-hal-qcom \
     vendor.qti.hardware.wifi.hostapd@1.2.vendor \
     vendor.qti.hardware.wifi.supplicant@2.2.vendor \
