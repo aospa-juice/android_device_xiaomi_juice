@@ -178,6 +178,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
     
+## Compile SystemUI on device with `speed`.
+PRODUCT_VENDOR_PROPERTIES += \
+    dalvik.vm.systemuicompilerfilter=speed
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
