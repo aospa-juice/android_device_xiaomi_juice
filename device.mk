@@ -500,7 +500,7 @@ PRODUCT_BOOT_JARS += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-juice \
+    android.hardware.usb@1.2-service-juice \
     android.hardware.usb.gadget@1.0-service-juice
 
 # Vendor service manager
