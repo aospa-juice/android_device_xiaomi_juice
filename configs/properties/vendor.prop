@@ -278,16 +278,12 @@ persist.sys.binary_xml=false
 # Time
 sys.vendor.shutdown.waittime=500
 
-# USB
-vendor.usb.diag.func.name=diag
-vendor.usb.use_ffs_mtp=0
+# Time-services
+persist.timed.enable=true
 
-# Volume steps
-ro.config.media_vol_steps=11
-ro.config.vc_call_vol_steps=10
-
-# WiFi
-wifi.aware.interface=wifi-aware0
+# WFD settings
+persist.debug.wfd.enable=1
+persist.sys.wfd.virtual=0
 
 # WLAN
 persist.vendor.sys.cnd.iwlan=1
