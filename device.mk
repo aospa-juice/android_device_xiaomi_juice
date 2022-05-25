@@ -403,6 +403,7 @@ DEVICE := juice
 TARGET_COMMON_QTI_COMPONENTS := \
     av \
     gps \
+    init \
     usb \
     vibrator
 
@@ -430,19 +431,15 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/bin/init.class_main.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.class_main.sh \
     $(LOCAL_PATH)/rootdir/bin/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
-    $(LOCAL_PATH)/rootdir/bin/init.qcom.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/rootdir/bin/init.qcom.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.sh \
     $(LOCAL_PATH)/rootdir/bin/init.qti.qcv.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qcv.sh
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.qcom.factory.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.factory.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
     $(LOCAL_PATH)/rootdir/etc/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
     $(LOCAL_PATH)/rootdir/etc/init.stnfc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.stnfc.rc \
     $(LOCAL_PATH)/rootdir/etc/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
-    $(LOCAL_PATH)/rootdir/etc/ueventd.juice.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+    $(LOCAL_PATH)/rootdir/etc/ueventd.juice.rc:$(TARGET_COPY_OUT_ODM)/ueventd.rc
 
 # Seccomp
 PRODUCT_COPY_FILES += \
