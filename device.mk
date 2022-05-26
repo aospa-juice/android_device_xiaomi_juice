@@ -176,18 +176,20 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
-PRODUCT_PACKAGES += \
-    memtrack.bengal \
-    gralloc.bengal \
-    hwcomposer.bengal
+PRODUCT_VENDOR_PROPERTIES += \
+    debug.sf.enable_gl_backpressure=1 \
+    vendor.display.idle_time=0 \
+    vendor.display.idle_time_inactive=0
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sys.sf.color_mode=9 \
+    debug.sf.disable_backpressure=1
+    
+PRODUCT_SYSTEM_PROPERTIES += \
+    debug.sf.latch_unsignaled=1
+    
 PRODUCT_PACKAGES += \
-    libdisplayconfig.qti \
-    libdisplayconfig.qti.vendor \
-    libqdMetaData \
-    libsdmcore \
-    libsdmutils \
-    libtinyxml
+    libdisplayconfig.qti
 
 PRODUCT_PACKAGES += \
     libvulkan
@@ -368,6 +370,7 @@ DEVICE := juice
 
 TARGET_COMMON_QTI_COMPONENTS := \
     av \
+    display \
     gps \
     init \
     media-legacy \
