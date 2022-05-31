@@ -427,6 +427,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
+# Subsystem silent restart
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.ssr.restart_level=ALL_ENABLE
+
 # Kernel configurations
 TARGET_KERNEL_VERSION := 4.19
 KERNEL_LLVM_SUPPORT := true
