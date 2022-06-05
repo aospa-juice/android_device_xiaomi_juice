@@ -352,7 +352,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
     telephony \
     usb \
     vibrator \
-    wfd
+    wfd \
+    wlan
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -465,15 +466,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
-    hostapd \
-    libwifi-hal-ctrl \
-    JuiceWifiOverlay \
-    libwifi-hal-qcom \
-    vendor.qti.hardware.wifi.hostapd@1.2.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.2.vendor \
-    wpa_supplicant \
-    wpa_supplicant.conf
+    JuiceWifiOverlay
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
