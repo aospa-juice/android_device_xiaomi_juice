@@ -277,6 +277,11 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-im
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.juice
 
+# LMK tuning
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lmk.filecache_min_kb=153600 \
+    ro.lmk.stall_limit_critical=40
+
 # Media
 PRODUCT_PACKAGES += \
     android.hardware.media.omx@1.0-impl \
