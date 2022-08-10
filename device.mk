@@ -250,10 +250,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_VENDOR_KERNEL_HEADERS += $(LOCAL_PATH)-kernel/kernel-headers
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.juice
-
 # LMK tuning
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.filecache_min_kb=153600 \
