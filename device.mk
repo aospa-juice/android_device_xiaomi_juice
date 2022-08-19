@@ -138,6 +138,9 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor
 
 PRODUCT_PACKAGES += \
+    libpiex_shim
+
+PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_PACKAGES += \
