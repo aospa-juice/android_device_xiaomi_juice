@@ -427,10 +427,11 @@ PRODUCT_COPY_FILES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
+<<<<<<< HEAD
     libdisplayconfig.system.qti \
     libqdMetaData.system \
     libdisplayconfig.vendor \
-    libwfdaac_vendor
+    libwfdaac_vendor:32
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/juice/juice-vendor.mk)
