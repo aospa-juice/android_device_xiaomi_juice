@@ -319,9 +319,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
 
 # Radio
 PRODUCT_PACKAGES += \
-    libwpa_client
-
-PRODUCT_PACKAGES += \
     android.hardware.radio@1.6.vendor \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
