@@ -409,10 +409,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# Preopt SystemUI for AOSP.
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
-
 # QMI
 PRODUCT_PACKAGES += \
     libjson \
