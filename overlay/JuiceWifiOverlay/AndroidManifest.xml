@@ -11,5 +11,4 @@
         android:priority="0"
         android:targetName="WifiCustomization"
         android:targetPackage="com.android.wifi.resources"/>
-
 </manifest>
