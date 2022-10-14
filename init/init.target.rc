@@ -95,6 +95,11 @@ on boot && property:persist.vendor.usb.controller.default=*
 on property:vendor.usb.controller=*
     setprop sys.usb.controller ${vendor.usb.controller}
 
+on init && property:ro.boot.mode=charger
+    mount_all /vendor/etc/charger_fstab.qti --early
+    write /sys/kernel/boot_adsp/boot 1
+    wait /sys/class/power_supply/battery
+
 on charger
     mount_all /vendor/etc/charger_fstab.qti --early
     write /sys/kernel/boot_adsp/boot 1
