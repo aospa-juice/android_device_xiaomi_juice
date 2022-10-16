@@ -1,3 +1,29 @@
+# Adapted LMKD [1] & [2]
+# kill_heaviest_task_dup
+ro.lmk.kill_heaviest_task=true
+# kill_timeout_ms_dup
+ro.lmk.kill_timeout_ms=100
+# thrashing_threshold
+ro.lmk.thrashing_limit=30
+# thrashing_decay
+ro.lmk.thrashing_limit_decay=5
+# nstrat_low_swap
+ro.lmk.swap_free_low_percentage=10
+# nstrat_psi_partial_ms
+ro.lmk.psi_partial_stall_ms=70
+# nstrat_psi_complete_ms
+ro.lmk.psi_complete_stall_ms=70
+# use_new_strategy_dup
+ro.lmk.use_new_strategy=true
+# CLO lmkd [1] - others were not defined (will use default values from lmkd binary)
+ro.lmk.psi_scrit_complete_stall_ms=75
+ro.lmk.nstrat_wmark_boost_factor=4
+ro.lmk.enable_watermark_check=true
+ro.lmk.enable_userspace_lmk=true
+ro.lmk.super_critical=701
+ro.lmk.direct_reclaim_pressure=45
+ro.lmk.reclaim_scan_threshold=0
+
 # app compaction - [1] & [2]
 # disabled app compaction due to app freezes when switching tasks
 persist.sys.appcompact.enable_app_compact=false
@@ -12,6 +38,9 @@ persist.sys.appcompact.compact_throttle_persistent=600000
 persist.sys.appcompact.rss_throttle_kb=12000
 persist.sys.appcompact.delta_rss_throttle_kb=8000
 persist.sys.perf.topAppRenderThreadBoost.enable=false
+
+# memory management [2]
+persist.sys.fw.bg_apps_limit=96
 
 # audio
 audio.sys.noisy.broadcast.delay=500
