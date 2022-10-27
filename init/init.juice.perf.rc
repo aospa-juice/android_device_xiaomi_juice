@@ -11,6 +11,9 @@ on property:persist.sys.device_provisioned=1
     setprop dalvik.vm.dex2oat-cpu-set 0,1,2,3,6,7
     setprop dalvik.vm.dex2oat-threads 6
 
+    # Enable suspend to RAM
+    write /sys/power/mem_sleep "deep"
+
 on property:sys.boot_completed=1
     write /dev/stune/schedtune.prefer_idle 0
     write /dev/stune/schedtune.boost 0
