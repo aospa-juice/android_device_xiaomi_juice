@@ -261,6 +261,15 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0.vendor \
     android.hardware.keymaster@4.1.vendor
 
+# Kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)-kernel/kernel
+
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)-kernel/vendor-modules,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
+
+PRODUCT_VENDOR_KERNEL_HEADERS += $(LOCAL_PATH)-kernel/kernel-headers
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.juice
