@@ -1,0 +1,59 @@
+# Copyright (C) 2022 Paranoid Android
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+on late-fs
+    # Start services for bootanim
+    start servicemanager
+    start surfaceflinger
+    start bootanim
+    start vendor.configstore-hal
+    start vendor.qti.hardware.display.composer
+    start vendor.qti.hardware.display.allocator
+    
+on early-boot
+    # SSR Setup
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys5/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys6/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys7/restart_level RELATED
+
+on init
+    # DT2W
+    chown system system /sys/touchpanel/double_tap
+    chmod 0644 /sys/touchpanel/double_tap
+
+    # Bind mount fastrpc_shell_3 for labelling
+    mkdir /mnt/vendor/dsp 0770 root root
+    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
+    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
+    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
+
+service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
+    override
+    class hal
+    user audioserver
+    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
+    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock
+    capabilities BLOCK_SUSPEND
+    ioprio rt 4
+    task_profiles ProcessCapacityHigh HighPerformance
+    socket audio_hw_socket seqpacket 0666 system system
+    onrestart restart audioserver
+
+on property:ro.boot.hwversion=*
+    setprop vendor.boot.hwversion ${ro.boot.hwversion}
