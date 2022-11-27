@@ -176,20 +176,18 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
-PRODUCT_VENDOR_PROPERTIES += \
-    debug.sf.enable_gl_backpressure=1 \
-    vendor.display.idle_time=0 \
-    vendor.display.idle_time_inactive=0
-
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.sys.sf.color_mode=9 \
-    debug.sf.disable_backpressure=1
-    
-PRODUCT_SYSTEM_PROPERTIES += \
-    debug.sf.latch_unsignaled=1
-    
 PRODUCT_PACKAGES += \
-    libdisplayconfig.qti
+    memtrack.bengal \
+    gralloc.bengal \
+    hwcomposer.bengal
+
+PRODUCT_PACKAGES += \
+    libdisplayconfig.qti \
+    libdisplayconfig.qti.vendor \
+    libqdMetaData \
+    libsdmcore \
+    libsdmutils \
+    libtinyxml
 
 PRODUCT_PACKAGES += \
     libvulkan
@@ -341,7 +339,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
     av \
     bt \
-    display \
     gps \
     init \
     media-legacy \
