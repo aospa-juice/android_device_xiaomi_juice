@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import /vendor/etc/init/hw/init.stnfc.rc
+
 on late-fs
     # Start services for bootanim
     start servicemanager
