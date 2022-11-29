@@ -85,8 +85,6 @@ vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so
 
 # Audio FX
-system_ext/etc/permissions/audiosphere.xml
-system_ext/framework/audiosphere.jar
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libmisoundfx.so
 vendor/lib/soundfx/libqcbassboost.so
@@ -101,6 +99,27 @@ vendor/lib/libaudio_log_utils.so
 vendor/lib/vendor.qti.hardware.audiohalext@1.0.so
 vendor/lib64/hw/vendor.qti.hardware.audiohalext@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.audiohalext@1.0.so
+
+# Audio Configs
+vendor/etc/audio_effects.conf
+vendor/etc/audio_effects.xml
+vendor/etc/audio_platform_info_intcodec.xml
+vendor/etc/audio_platform_info_idp.xml
+vendor/etc/audio_platform_info_scubaidp.xml
+vendor/etc/audio_platform_info_scubaqrd.xml
+vendor/etc/audio_platform_info.xml
+vendor/etc/audio_policy_volumes.xml
+vendor/etc/bluetooth_qti_audio_policy_configuration.xml
+vendor/etc/default_volume_tables.xml
+vendor/etc/media_codecs_vendor_audio.xml
+vendor/etc/mixer_paths_idp.xml
+vendor/etc/mixer_paths_scubaidp.xml
+vendor/etc/mixer_paths_scubaqrd.xml
+vendor/etc/mixer_paths.xml
+vendor/etc/r_submix_audio_policy_configuration.xml
+vendor/etc/sound_trigger_mixer_paths.xml
+vendor/etc/sound_trigger_platform_info.xml
+vendor/etc/usb_audio_policy_configuration.xml
 
 # Audio Libraries
 vendor/lib/liba2dpoffload.so
