@@ -4,22 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Dynamic Partitions
-BOARD_DYNAMIC_PARTITION_ENABLE := true
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# Enable updating of APEXes
+# APEX
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
-# Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
-# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # API level
 BOARD_SHIPPING_API_LEVEL := 29
@@ -196,6 +182,9 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_VENDOR_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
+# Dalvik
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
@@ -234,6 +223,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     disable_configstore
 
+# Dynamic Partitions
+BOARD_DYNAMIC_PARTITION_ENABLE := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 # Use 64-bit dex2oat for better dexopt time.
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true
@@ -256,6 +249,9 @@ PRODUCT_PACKAGES += \
 
 # GPS
 LOC_HIDL_VERSION := 4.0
+
+# GSI
+$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -409,6 +405,9 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.se.type=HCE,UICC \
     telephony.lteOnCdmaDevice=1
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.radio.enableadvancedscan=true
+
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.radio.process_sups_ind=1
 
@@ -423,6 +422,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sensors.enable.rt_task=false \
     persist.vendor.sensors.support_direct_channel=false \
     persist.vendor.sensors.enable.bypass_worker=true
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
 
 # Kernel configurations
 TARGET_KERNEL_VERSION := 4.19
@@ -453,23 +456,16 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_PACKAGES += \
     vndservicemanager
 
-# Vendor property to enable advanced network scanning
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.enableadvancedscan=true
-
+# VNDK
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
-# WiFi
+# WLAN
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
-# WiFi Display
+# WFD
 PRODUCT_PACKAGES += \
-<<<<<<< HEAD
-    libdisplayconfig.system.qti \
-    libqdMetaData.system \
-    libdisplayconfig.vendor \
     libwfdaac_vendor:32
 
 # Inherit the proprietary files
