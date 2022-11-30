@@ -123,10 +123,6 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0 \
     android.hardware.bluetooth@1.0.vendor
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml
-
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
     persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true \
@@ -144,29 +140,26 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.vendor.btstack.enable.twsplus=true \
     persist.vendor.bt.a2dp.aac_whitelist=false
 
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml
+
 # Camera
 PRODUCT_PACKAGES += \
-    android.frameworks.sensorservice@1.0 \
-    android.frameworks.sensorservice@1.0.vendor \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service_64
-
-PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-service_64 \
     libcamera2ndk_vendor \
-    libstdc++.vendor
-
-PRODUCT_PACKAGES += \
-    libpiex_shim
-
-PRODUCT_PACKAGES += \
-    Snap
-
-PRODUCT_PACKAGES += \
+    libpiex_shim \
+    libstdc++.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor \
-    vendor.qti.hardware.camera.device@3.5.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+    
+PRODUCT_SYSTEM_PROPERTIES += \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera \
+    vendor.camera.aux.packagelist.ext=org.codeaurora.snapcam,com.android.camera \
+    persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.android.camera
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     camera.disable_zsl_mode=1
 
 # Consumer IR
@@ -178,14 +171,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.crypto.volume.filenames_mode = "aes-256-cts" \
     ro.crypto.allow_encrypt_override = true
-
-# Dexpreopt
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
-    
-## Compile SystemUI on device with `speed`.
-PRODUCT_VENDOR_PROPERTIES += \
-    dalvik.vm.systemuicompilerfilter=speed
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -232,20 +217,10 @@ PRODUCT_PACKAGES += \
 BOARD_DYNAMIC_PARTITION_ENABLE := true
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Use 64-bit dex2oat for better dexopt time.
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat64.enabled=true
-
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0.vendor \
-    android.hardware.drm@1.2.vendor \
-    android.hardware.drm@1.3.vendor \
-    android.hardware.drm@1.3-service.clearkey
-
-# Enable incremental FS feature
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.incremental.enable=1
+    android.hardware.drm@1.4.vendor \
+    android.hardware.drm-service.clearkey
 
 # Fastboot
 PRODUCT_PACKAGES += \
@@ -292,13 +267,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.manufacturer=QTI
 
+# Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2.xml
-    
-# Network
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor \
-    netutils-wrapper-1.0
 
 # Neural Networks
 PRODUCT_PACKAGES += \
@@ -385,40 +356,29 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/init.xiaomi.fingerprint.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.xiaomi.fingerprint.rc
 
 # Radio
-PRODUCT_PACKAGES += \
-    android.hardware.radio@1.6.vendor \
-    android.hardware.radio.config@1.3.vendor \
-    android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.secure_element@1.2.vendor \
-    android.system.net.netd@1.1.vendor
-
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.data.iwlan.enable=true \
     persist.vendor.radio.add_power_save=1 \
     persist.vendor.radio.atfwd.start=true \
     persist.vendor.radio.data_con_rprt=1 \
+    persist.vendor.radio.enable_temp_dds=true \
     persist.vendor.radio.force_on_dc=true \
     persist.vendor.radio.manual_nw_rej_ct=1 \
     persist.vendor.radio.mt_sms_ack=30 \
     persist.vendor.radio.process_sups_ind=1 \
-    persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.report_codec=1 \
     persist.vendor.radio.snapshot_enabled=1 \
     persist.vendor.radio.snapshot_timer=5 \
     rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so \
-    ro.telephony.default_network=22,20 \
+    ro.vendor.radio.features_common=3 \
     ro.vendor.se.type=HCE,UICC \
-    telephony.lteOnCdmaDevice=1
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.enableadvancedscan=true
-
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.radio.process_sups_ind=1
+    sys.vendor.shutdown.waittime=500
 
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-service.multihal \
+    android.frameworks.sensorservice@1.0 \
+    android.frameworks.sensorservice@1.0.vendor \
     libsensorndkbridge
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -435,16 +395,6 @@ PRODUCT_SOONG_NAMESPACES += \
 # Subsystem silent restart
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.ssr.restart_level=ALL_ENABLE
-
-# Kernel configurations
-TARGET_KERNEL_VERSION := 4.19
-KERNEL_LLVM_SUPPORT := true
-KERNEL_SD_LLVM_SUPPORT := true
-
-# Treble flag
-PRODUCT_FULL_TREBLE_OVERRIDE := true
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-BOARD_VNDK_VERSION := current
 
 # USB
 PRODUCT_COPY_FILES += \

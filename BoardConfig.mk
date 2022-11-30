@@ -59,6 +59,17 @@ TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API := true
 
+# DT2W
+TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
+
+# DTB
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+
+# DTBO
+BOARD_KERNEL_SEPARATED_DTBO := false
+
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
@@ -99,17 +110,8 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 
 KERNEL_DEFCONFIG := vendor/$(TARGET_BOARD_PLATFORM)-perf_defconfig
 
-# DTB
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_BOOTIMG_HEADER_VERSION := 2
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-
-# DTBO
-BOARD_KERNEL_SEPARATED_DTBO := false
-
-# Prebuilts for DTB and DTBO [DNM - wait for source release by Xiaomi Inc.]
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+# Media
+TARGET_DISABLED_UBWC := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
@@ -135,23 +137,18 @@ TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 
-# Platform
-BOARD_VENDOR := xiaomi
-
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 
+# Prebuilts for DTB and DTBO [DNM - wait for source release by Xiaomi Inc.]
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+
 # QC tree common
 TARGET_SEPOLICY_DIR := bengal
-
-# Screen density
-TARGET_SCREEN_DENSITY := 440
-
-# Security patch level
-VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
@@ -160,15 +157,18 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 150
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Sensor multi HAL
-USE_SENSOR_MULTI_HAL := true
-
 # Sepolicy
 #BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 #BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 #BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 SELINUX_IGNORE_NEVERALLOWS := true
+
+# Screen density
+TARGET_SCREEN_DENSITY := 440
+
+# Security patch level
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Treble flag
 BOARD_VNDK_VERSION := current
