@@ -129,22 +129,29 @@ PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.hardware.power.rx_cur_ma=75 \
     bluetooth.hardware.power.tx_cur_ma=93
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aac \
+    persist.vendor.btstack.aac_frm_ctl.enabled=true \
+    persist.vendor.btstack.connect.peer_earbud=true \
+    persist.vendor.btstack.enable.swb=true \
+    persist.vendor.btstack.enable.swbpm=true \
+    persist.vendor.service.bdroid.soc.alwayson=true \
+    ro.bluetooth.emb_wp_mode=false \
+    ro.bluetooth.wipower=false
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.btstack.enable.lpa=true \
+    persist.vendor.btstack.enable.twsplus=true
+
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.bluetooth.modem_nv_support=true \
     persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
-    persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true \
+    persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false \
     persist.vendor.qcom.bluetooth.enable.splita2dp=true \
     persist.vendor.qcom.bluetooth.scram.enabled=false \
     persist.vendor.qcom.bluetooth.soc=cherokee \
     persist.vendor.qcom.bluetooth.twsp_state.enabled=false \
-    persist.vendor.btstack.enable.splita2dp=true \
-    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
-    ro.vendor.bluetooth.wipower=false \
-    vendor.qcom.bluetooth.soc=cherokee
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.vendor.btstack.enable.lpa=true \
-    persist.vendor.btstack.enable.twsplus=true \
-    persist.vendor.bt.a2dp.aac_whitelist=false
+    ro.vendor.bluetooth.wipower=false
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
