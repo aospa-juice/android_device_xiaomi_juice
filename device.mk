@@ -288,18 +288,15 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0.vendor \
     android.hardware.keymaster@4.1.vendor
 
-# LMK tuning
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lmk.filecache_min_kb=153600 \
-    ro.lmk.stall_limit_critical=40
-
 # Manufacturer
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.soc.manufacturer=QTI
+    ro.soc.manufacturer=Qualcomm \
+    ro.soc.model=SM6115
 
-# Media
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media/media_codecs_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2.xml
+# Netflix
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.netflix.channel=004ee050-1a17-11e9-bb61-6f1da27fb55b \
+    ro.netflix.signup=1
 
 # Neural Networks
 PRODUCT_PACKAGES += \
@@ -356,33 +353,24 @@ TARGET_COMMON_QTI_COMPONENTS := \
     wfd \
     wlan
 
-# QSPM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qspm.enable=true
-
-# RRO configuration
-TARGET_USES_RRO := true
-
 # Rootdir / Init files
+PRODUCT_PACKAGES += \
+    init.qti.dcvs.sh \
+    init.qti.early_init.sh
+
+PRODUCT_PACKAGES += \
+    init.juice.rc \
+    init.juice.perf.rc \
+    init.target.rc \
+    init.xiaomi.rc \
+    init.xiaomi.display.rc \
+    init.xiaomi.fingerprint.rc \
+    init.xiaomi.camera.rc \
+    ueventd.juice.rc
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
     $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.qti.early_init.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.early_init.sh \
-    $(LOCAL_PATH)/init/init.qti.dcvs.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.dcvs.sh
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.juice.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.juice.rc \
-    $(LOCAL_PATH)/init/init.juice.perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.juice.perf.rc \
-    $(LOCAL_PATH)/init/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
-    $(LOCAL_PATH)/init/ueventd.juice.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.xiaomi.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.xiaomi.rc \
-    $(LOCAL_PATH)/init/init.xiaomi.camera.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.xiaomi.camera.rc \
-    $(LOCAL_PATH)/init/init.xiaomi.display.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.xiaomi.display.rc \
-    $(LOCAL_PATH)/init/init.xiaomi.fingerprint.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.xiaomi.fingerprint.rc
 
 # Radio
 PRODUCT_VENDOR_PROPERTIES += \
@@ -433,18 +421,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/init.mi.usb.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.mi.usb.sh \
     $(LOCAL_PATH)/init/init.qcom.usb.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.usb.sh
 
+ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.usb.config=mtp,adb \
-    ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1 \
-    ro.control_privapp_permissions=log
+    persist.vendor.usb.config=mtp,adb
+endif
 
-# Vendor service manager
-PRODUCT_PACKAGES += \
-    vndservicemanager
+# Verified Boot
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
 
 # VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 29 30
+
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
