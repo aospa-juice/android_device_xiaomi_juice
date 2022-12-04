@@ -324,6 +324,7 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
+    AOSPAJuiceFrameworksOverlay \
     FrameworksResTarget \
     JuiceFrameworksOverlay \
     JuiceSystemUIOverlay \
